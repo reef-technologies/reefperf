@@ -1,0 +1,9 @@
+{
+	"cloudscale_token": "token",
+	"priv_ssh_key_path": "/home/krzysztof/.ssh/cloud_access",
+	"pub_ssh_key_path": "/home/krzysztof/.ssh/cloud_access.pub",
+	"deploy_script_path": "install_and_run_app.sh",
+	"deploy_command": "./install_and_run_app.sh &",
+	"test_script_path": "test_app.sh",
+	"test_command": "./test_app.sh"
+}

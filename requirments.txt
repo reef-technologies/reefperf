@@ -1,1 +1,2 @@
 apache-libcloud==2.1.0
+paramiko==2.2.1
