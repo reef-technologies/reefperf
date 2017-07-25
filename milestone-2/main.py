@@ -1,3 +1,11 @@
+# Manual
+# 1. Create account on https://control.cloudscale.ch/signup
+# 2. Get directory content from https://github.com/reef-technologies/reefperf/tree/libcloud-examples/milestone-2
+# 3. Visit https://control.cloudscale.ch/user/api-tokens to generate api access token
+# 4. Generate new pair ssh keys
+# 5. Customize config-template.json
+# 4. python main.py path-to-config
+
 from pprint import pprint
 
 import itertools
