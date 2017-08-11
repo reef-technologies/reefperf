@@ -8,6 +8,6 @@ branches:
   only:
     - master
 
-install: "pip install -r requirements.txt"
+install: "pip install -r requirments.txt"
 
 script: pytest
