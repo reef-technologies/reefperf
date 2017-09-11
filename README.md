@@ -13,13 +13,14 @@ and get readable raport from them across many cloud vendors (maybe compare them)
 	Design of these test scripts (for consideration)
 3. Run test scripts simultaneously.
 4. Gather infromation form test nodes.
-5. Prepare raport from test
+5. Prepare report from test
 
 ## Architecture (except module for raport generator)
 
 ![alt_text](class_diagram.png)
 
 Note: In following descirption pattern means a pattern of simulated users load.
+	Example: continuous high load, low load with short high load peaks etc.
 
 Classes responsibilities:
 - TheaterProvider - orders to build cloud infrastructure for whole reefperf test
@@ -32,9 +33,11 @@ Classes responsibilities:
 - Act - runs multiple scenes (in parallel or sequentially or hybrid) 
 - Scene - executes a series of actors (in parallel or sequentially or hybrid).
 	One scene is one test machine running some pattern (or multiple patterns)
-- Actor - executes (sequentially?) a list of lines on a given scene (lines ~> series of TestingToolWraper objects)
-- TestingToolWraper - wrapper for testing tools such as ab, httpperf, jmeter
-	with uniform interface across all its subclasses which allows information gathering from testing tool execution
+- Actor - executes (sequentially?) a list of lines on a given scene (lines ~> series of TestingToolWrapper objects).
+	Actor is assigned to single scene
+- TestingToolWrapper - wrapper for testing tools such as ab, httpperf, jmeter
+	with uniform interface across all its subclasses which allows information gathering from testing tool execution.
+	It is basic element which realises load pattern.
 
 ## Useful links
 [libcloud](https://libcloud.apache.org/)

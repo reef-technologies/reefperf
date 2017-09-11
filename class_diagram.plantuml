@@ -1,0 +1,32 @@
+@startuml
+TestSuiteRunner -- Director
+TestSuiteRunner -- TheaterProvider
+TheaterProvider -- CloudDriver
+CloudDriver -- CloudNode
+CloudNode -- NodeConnectionProvider
+Director -- Spectacle
+Spectacle -- Act
+Act -- Scene
+Scene -- Actor
+Actor -- TestingToolWrapper
+
+class Director
+
+class TheaterProvider {
+	{method} Theater build_theater()
+}
+
+class CloudDriver {
+	{method} CloudNode create_node()
+}
+
+class CloudNode {
+  {method} NodeConnection get_connection()
+}
+
+class Theater {
+	{field} test_nodes
+	{field} app_nodes
+}
+
+@enduml
