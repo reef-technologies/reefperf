@@ -19,5 +19,7 @@ if __name__ == '__main__':
     }
     driver = LCCloudScaleDriver(credentials)
     node = driver.create_node(cloud_node_cfg)
-    node.connection.exec_command('ls /')
+    stdout_ = node.connection.exec_command('ls /')
+    for line in stdout_.readlines():
+        print(line)
     node.destroy()

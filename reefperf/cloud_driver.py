@@ -3,15 +3,17 @@ from reefperf.cloud_node import LCCloudScaleNode
 from reefperf.ssh_key_generator import ParamikoRSAKeyGenerator
 import libcloud
 
+
 class CloudDriver(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def create_node(cloud_node_cls, cloud_node_cfg):
+    def create_node(self, cloud_node_cfg):
         pass
 
 # LC is a short for apache libcloud. It means that
 # all classes with prefix LC using this libcloud for operating on cloud nodes
+
 
 class LCCloudScaleDriver(CloudDriver):
     SSH_KEY_LENGHT = 4096
@@ -21,9 +23,13 @@ class LCCloudScaleDriver(CloudDriver):
             libcloud.DriverType.COMPUTE,
             libcloud.DriverType.COMPUTE.CLOUDSCALE
         )
-        self._driver = driver_cls(credentials['api_token']) 
-        self._images = {image.id: image for image in self._driver.list_images()}
-        self._sizes = {size.id: size for size in self._driver.list_sizes()}
+        self._driver = driver_cls(credentials['api_token'])
+        self._images = {
+            image.id: image for image in self._driver.list_images()
+        }
+        self._sizes = {
+            size.id: size for size in self._driver.list_sizes()
+        }
 
     def create_node(self, cloud_node_cfg):
         keys = ParamikoRSAKeyGenerator.generate_pair(self.SSH_KEY_LENGHT)
@@ -37,3 +43,8 @@ class LCCloudScaleDriver(CloudDriver):
         )
         cloud_node_cfg['connection']['keys'] = keys
         return LCCloudScaleNode(lc_node_obj, cloud_node_cfg['connection'])
+
+
+DRIVER_CLASSES = {
+    "LCCloudScaleDriver": LCCloudScaleDriver
+}

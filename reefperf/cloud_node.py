@@ -1,15 +1,18 @@
 from abc import abstractmethod, ABCMeta
 from reefperf.node_connection_provider import NodeConnectionProvider
 
+
 class CloudNode(object):
     __metaclass__ = ABCMeta
 
+    @property
     @abstractmethod
-    def create_connection(self):
+    def connection(self):
         pass
 
 # LC is a short for apache libcloud. It means that
 # all classes with prefix LC using this libcloud for operating on cloud nodes
+
 
 class LCCloudScaleNode(CloudNode):
     def __init__(self, lc_node_obj, conn_cfg):
@@ -17,7 +20,7 @@ class LCCloudScaleNode(CloudNode):
         self._possible_usernames = [
             'ubuntu', 'core', 'gentoo', 'centos',
             'debian', 'arch', 'fedora'
-        ] 
+        ]
         self._conn_cfg = conn_cfg
         self._connection_obj = None
 
