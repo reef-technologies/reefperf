@@ -1,0 +1,26 @@
+{
+  "app-deployment" : {
+    "nodes": [
+      {
+        "name": "http",
+        "type": "http",
+        "deploy-command": "./client-name/http/deploy.sh"
+      },
+      {
+        "name": "cache1",
+        "type": "cache",
+        "deploy-command": "./client-name/cache/deploy.sh"
+      },
+      {
+        "name": "cache2",
+        "type": "cache",
+        "deploy-command": "./client-name/cache/deploy.sh"
+      },
+      {
+        "name": "database",
+        "type": "database",
+        "deploy-command": "./client-name/database/deploy.sh"
+      }
+    ]
+  }
+}

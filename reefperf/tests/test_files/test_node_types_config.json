@@ -1,0 +1,24 @@
+{
+  "app-node-types": {
+    "http": {
+      "driver-class": "TestCloudDriver",
+      "ram-size": "4GB",
+      "ssd-size": "4GB",
+      "username": "ubuntu"
+    },
+    "cache": {
+      "driver-class": "TestCloudDriver",
+      "ram-size": "8GB",
+      "ssd-size": "8GB",
+      "username": "ubuntu"
+    },
+    "database": {
+      "driver-class": "TestCloudDriver",
+      "ram-size": "16GB",
+      "sdd-size": "16GB",
+      "username": "ubuntu"
+    }
+  },
+  "test-nodes-types": {
+  }
+}
