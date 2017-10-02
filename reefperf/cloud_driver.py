@@ -1,7 +1,9 @@
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta, abstractmethod
+
+import libcloud
+
 from reefperf.cloud_node import LCCloudScaleNode
 from reefperf.ssh_key_generator import ParamikoRSAKeyGenerator
-import libcloud
 
 
 class CloudDriver(object):

@@ -1,9 +1,10 @@
-from reefperf.cloud_driver import LCCloudScaleDriver
-import paramiko
+from io import StringIO
 from pprint import pprint
+
 import libcloud
 import paramiko
-from io import StringIO
+
+from reefperf.cloud_driver import LCCloudScaleDriver
 
 if __name__ == '__main__':
     credentials = {

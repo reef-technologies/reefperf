@@ -1,8 +1,9 @@
-from abc import abstractmethod, ABCMeta
-from paramiko import SSHClient, AutoAddPolicy
-from paramiko.rsakey import RSAKey
-from paramiko.client import MissingHostKeyPolicy
+from abc import ABCMeta, abstractmethod
 from io import StringIO
+
+from paramiko import AutoAddPolicy, SSHClient
+from paramiko.client import MissingHostKeyPolicy
+from paramiko.rsakey import RSAKey
 
 
 class NodeConnection(object):

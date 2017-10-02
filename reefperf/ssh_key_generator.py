@@ -1,6 +1,7 @@
-from abc import abstractmethod, ABCMeta
-from paramiko.rsakey import RSAKey
+from abc import ABCMeta, abstractmethod
 from io import StringIO
+
+from paramiko.rsakey import RSAKey
 
 
 class AbstractKeyGenerator(object):

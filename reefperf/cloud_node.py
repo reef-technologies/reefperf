@@ -1,4 +1,5 @@
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta, abstractmethod
+
 from reefperf.node_connection_provider import NodeConnectionProvider
 
 

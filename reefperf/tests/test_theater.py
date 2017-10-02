@@ -1,10 +1,10 @@
 import json
 from pathlib import Path
+
 from mock import patch
 
-
-from reefperf.theater import Theater
 from reefperf.tests.dummy_driver import DummyCloudDriver
+from reefperf.theater import Theater
 
 
 class TestTheater(object):
