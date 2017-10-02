@@ -14,6 +14,7 @@ class CloudDriver(object):
     def create_node(self, cloud_node_cfg):
         pass
 
+
 # LC is a short for apache libcloud. It means that
 # all classes with prefix LC using this libcloud for operating on cloud nodes
 
@@ -31,16 +32,12 @@ class LCCloudScaleDriver(CloudDriver):
     @property
     @lru_cache()
     def images(self):
-        return {
-            image.id: image for image in self._driver.list_images()
-        }
+        return {image.id: image for image in self._driver.list_images()}
 
     @property
     @lru_cache()
     def sizes(self):
-        return {
-            size.id: size for size in self._driver.list_sizes()
-        }
+        return {size.id: size for size in self._driver.list_sizes()}
 
     def create_node(self, cloud_node_cfg):
         keys = ParamikoRSAKeyGenerator.generate_pair(self.SSH_KEY_LENGTH)
@@ -48,14 +45,10 @@ class LCCloudScaleDriver(CloudDriver):
             name=cloud_node_cfg['node_name'],
             size=self.sizes[cloud_node_cfg['size']],
             image=self.images[cloud_node_cfg['image']],
-            ex_create_attr={
-                'ssh_keys': [keys['pub_key_str']]
-            }
+            ex_create_attr={'ssh_keys': [keys['pub_key_str']]}
         )
         cloud_node_cfg['connection']['keys'] = keys
         return LCCloudScaleNode(lc_node_obj, cloud_node_cfg['connection'])
 
 
-DRIVER_CLASSES = {
-    "LCCloudScaleDriver": LCCloudScaleDriver
-}
+DRIVER_CLASSES = {"LCCloudScaleDriver": LCCloudScaleDriver}

@@ -11,6 +11,7 @@ class CloudNode(object):
     def connection(self):
         pass
 
+
 # LC is a short for apache libcloud. It means that
 # all classes with prefix LC using this libcloud for operating on cloud nodes
 
@@ -27,12 +28,10 @@ class LCCloudScaleNode(CloudNode):
     """
     This class is not threadsafe.
     """
+
     def __init__(self, lc_node_obj, conn_cfg):
         self._lc_node_obj = lc_node_obj
-        self._possible_usernames = [
-            'ubuntu', 'core', 'gentoo', 'centos',
-            'debian', 'arch', 'fedora'
-        ]
+        self._possible_usernames = ['ubuntu', 'core', 'gentoo', 'centos', 'debian', 'arch', 'fedora']
         self._conn_cfg = conn_cfg
         self._connection_obj = None
 
@@ -41,7 +40,6 @@ class LCCloudScaleNode(CloudNode):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.destroy()
-
 
     @property
     def hostname(self):
@@ -58,9 +56,7 @@ class LCCloudScaleNode(CloudNode):
     def connection(self):
         if self._connection_obj is not None:
             return self._connection_obj
-        self._connection_obj = NodeConnectionProvider.create_connection(
-            self._conn_cfg, self.hostname, self.username
-        )
+        self._connection_obj = NodeConnectionProvider.create_connection(self._conn_cfg, self.hostname, self.username)
         return self._connection_obj
 
     def destroy(self):

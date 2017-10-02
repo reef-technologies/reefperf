@@ -5,9 +5,7 @@ from reefperf.tests.dummy_node import DummyCloudNode
 
 
 class DummyCloudDriver(CloudDriver):
-    IP_POOL = (
-       str(ip_addr) for ip_addr in IPv4Network('10.10.10.0/24')
-    )
+    IP_POOL = (str(ip_addr) for ip_addr in IPv4Network('10.10.10.0/24'))
 
     def create_node(self, node_config):
         node_config = node_config.copy()

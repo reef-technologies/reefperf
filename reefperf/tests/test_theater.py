@@ -17,10 +17,7 @@ class TestTheater(object):
         with open(test_files_dir.joinpath("test_node_types_config.json"), "rb") as config_file:
             cls.theater_config = json.load(config_file)
 
-    @patch.dict(
-        "reefperf.cloud_driver.DRIVER_CLASSES",
-        {"TestCloudDriver": DummyCloudDriver}
-    )
+    @patch.dict("reefperf.cloud_driver.DRIVER_CLASSES", {"TestCloudDriver": DummyCloudDriver})
     def test_create_app_nodes(self):
         theater = Theater(
             self.theater_config,
@@ -36,8 +33,7 @@ class TestTheater(object):
             "port": "22",
             "private-key-path": "~/.ssh/http/id_rsa",
             "username": "ubuntu",
-
         }
 
-    def check_node_names(self, app_nodes,  node_type, expected_names):
+    def check_node_names(self, app_nodes, node_type, expected_names):
         assert sorted(node.node_name for node in app_nodes[node_type]) == expected_names
