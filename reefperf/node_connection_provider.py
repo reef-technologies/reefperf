@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 from io import StringIO
 
 from paramiko import AutoAddPolicy, SSHClient
-from paramiko.client import MissingHostKeyPolicy
 from paramiko.rsakey import RSAKey
 
 
@@ -24,7 +23,7 @@ class ParamikoConnection(NodeConnection):
         'rsa': RSAKey
     }
 
-    def __init__(self, conn_cfg, ipv4, username):
+    def __init__(self, conn_cfg, hostname, username):
         priv_key_type = conn_cfg['keys']['keys_type']
         priv_key_str = conn_cfg['keys']['priv_key_str']
         priv_key_stream = StringIO(priv_key_str)
@@ -33,11 +32,14 @@ class ParamikoConnection(NodeConnection):
         )
         self._client = SSHClient()
         self._client.set_missing_host_key_policy(AutoAddPolicy())
-        self._client.connect(ipv4, username=username, pkey=priv_key)
+        self._client.connect(hostname, username=username, pkey=priv_key)
 
     def exec_command(self, command_str):
-        _, stdout_, _ = self._client.exec_command(command_str)
-        return stdout_
+        _, stdout, _ = self._client.exec_command(command_str)
+        return stdout
+
+    def scp_file(self, path_to_file):
+        raise NotImplementedError()
 
     def close(self):
         self._client.close()
@@ -49,7 +51,7 @@ class NodeConnectionProvider(object):
     }
 
     @classmethod
-    def create_connection(cls, conn_cfg, ipv4, username):
+    def create_connection(cls, connection_config, hostname, username):
         return cls.CONNECTION_CLASSES[
-            conn_cfg['connection_class']
-        ](conn_cfg, ipv4, username)
+            connection_config['connection_class']
+        ](connection_config, hostname, username)

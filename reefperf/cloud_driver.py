@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from functools import lru_cache
 
 import libcloud
 
@@ -18,27 +19,35 @@ class CloudDriver(object):
 
 
 class LCCloudScaleDriver(CloudDriver):
-    SSH_KEY_LENGHT = 4096
+    SSH_KEY_LENGTH = 4096
 
     def __init__(self, credentials):
         driver_cls = libcloud.get_driver(
             libcloud.DriverType.COMPUTE,
-            libcloud.DriverType.COMPUTE.CLOUDSCALE
+            libcloud.DriverType.COMPUTE.CLOUDSCALE,
         )
         self._driver = driver_cls(credentials['api_token'])
-        self._images = {
+
+    @property
+    @lru_cache()
+    def images(self):
+        return {
             image.id: image for image in self._driver.list_images()
         }
-        self._sizes = {
+
+    @property
+    @lru_cache()
+    def sizes(self):
+        return {
             size.id: size for size in self._driver.list_sizes()
         }
 
     def create_node(self, cloud_node_cfg):
-        keys = ParamikoRSAKeyGenerator.generate_pair(self.SSH_KEY_LENGHT)
+        keys = ParamikoRSAKeyGenerator.generate_pair(self.SSH_KEY_LENGTH)
         lc_node_obj = self._driver.create_node(
             name=cloud_node_cfg['node_name'],
-            size=self._sizes[cloud_node_cfg['size']],
-            image=self._images[cloud_node_cfg['image']],
+            size=self.sizes[cloud_node_cfg['size']],
+            image=self.images[cloud_node_cfg['image']],
             ex_create_attr={
                 'ssh_keys': [keys['pub_key_str']]
             }

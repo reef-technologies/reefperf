@@ -9,7 +9,7 @@ class AbstractKeyGenerator(object):
 
     @classmethod
     @abstractmethod
-    def generate_pair(self, length):
+    def generate_pair(cls, length):
         pass
 
 
@@ -20,10 +20,7 @@ class ParamikoRSAKeyGenerator(AbstractKeyGenerator):
         priv_key_stream = StringIO()
         priv_key.write_private_key(priv_key_stream)
         priv_key_str = priv_key_stream.getvalue()
-        pub_key_str = '{} {}'.format(
-            priv_key.get_name(),
-            priv_key.get_base64()
-        )
+        pub_key_str = f"{priv_key.get_name()} {priv_key.get_base64()}"
         return {
             'keys_type': 'rsa',
             'priv_key_str': priv_key_str,

@@ -15,7 +15,18 @@ class CloudNode(object):
 # all classes with prefix LC using this libcloud for operating on cloud nodes
 
 
+class CloudScaleUserNameNotFound(Exception):
+    def ___init__(self, image_name):
+        self._image_name = image_name
+
+    def __str__(self):
+        return f"Not found proper username for {self._image_name} image"
+
+
 class LCCloudScaleNode(CloudNode):
+    """
+    This class is not threadsafe.
+    """
     def __init__(self, lc_node_obj, conn_cfg):
         self._lc_node_obj = lc_node_obj
         self._possible_usernames = [
@@ -26,7 +37,7 @@ class LCCloudScaleNode(CloudNode):
         self._connection_obj = None
 
     @property
-    def ipv4(self):
+    def hostname(self):
         return self._lc_node_obj.public_ips[0]
 
     @property
@@ -34,13 +45,15 @@ class LCCloudScaleNode(CloudNode):
         for name in self._possible_usernames:
             if self._lc_node_obj.image.id.startswith(name):
                 return name
+        raise CloudScaleUserNameNotFound(self._lc_node_obj.image.id)
 
     @property
     def connection(self):
-        if self._connection_obj is None:
-            self._connection_obj = NodeConnectionProvider.create_connection(
-                self._conn_cfg, self.ipv4, self.username
-            )
+        if self._connection_obj is not None:
+            return self._connection_obj
+        self._connection_obj = NodeConnectionProvider.create_connection(
+            self._conn_cfg, self.hostname, self.username
+        )
         return self._connection_obj
 
     def destroy(self):
