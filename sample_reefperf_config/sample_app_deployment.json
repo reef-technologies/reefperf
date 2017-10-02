@@ -1,21 +1,21 @@
 {
-	"app-deployment": {
-		"nodes": [
-			{
-				"name": "cache",
-				"type": "cache",
-				"deploy-command": "./client-name/cache/deploy.sh"
-			},
-			{
-				"name": "http-static",
-				"type": "httpd",
-				"deploy-command": "./client-name/http-static/deploy.sh"
-			},
-			{
-				"name": "http-dynamic",
-				"type": "httpd",
-				"deploy-command": "./client-name/http-dynamic/deploy.sh"
-			}
-		]
-	}
+    "app-deployment": {
+        "nodes": [
+            {
+                "name": "cache",
+                "type": "cache",
+                "deploy-command": "./client-name/cache/deploy.sh"
+            },
+            {
+                "name": "http-static",
+                "type": "httpd",
+                "deploy-command": "./client-name/http-static/deploy.sh"
+            },
+            {
+                "name": "http-dynamic",
+                "type": "httpd",
+                "deploy-command": "./client-name/http-dynamic/deploy.sh"
+            }
+        ]
+    }
 }

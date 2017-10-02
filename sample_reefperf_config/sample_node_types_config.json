@@ -1,41 +1,41 @@
 {
-	"app-node-types": {
-		"httpd": {
-			"driver-class": "LCCloudScaleDriver",
-			"credentials": {
-		        "api_token": "token"
-		    },
-	        "size": "flex-2",
-	        "image": "ubuntu-16.04",
-	        "connection": {
-	            "connection_class": "paramiko"
-	        }
-		},
-		"cache": {
-			"driver-class": "LCCloudScaleDriver",
-	        "size": "flex-2",
-	        "image": "ubuntu-16.04",
-	        "connection": {
-	            "connection_class": "paramiko"
-	        }
-		}
-	},
-	"test-node-types": {
-		"selenium": {
-			"driver-class": "LCCloudScaleDriver",
-	        "size": "flex-2",
-	        "image": "ubuntu-16.04",
-	        "connection": {
-	            "connection_class": "paramiko"
-	        }
-		},
-		"tsung": {
-			"driver-class": "LCCloudScaleDriver",
-	        "size": "flex-2",
-	        "image": "ubuntu-16.04",
-	        "connection": {
-	            "connection_class": "paramiko"
-	        }
-		}
-	} 
+    "app-node-types": {
+        "httpd": {
+            "driver-class": "LCCloudScaleDriver",
+            "credentials": {
+                "api_token": "token"
+            },
+            "size": "flex-2",
+            "image": "ubuntu-16.04",
+            "connection": {
+                "connection_class": "paramiko"
+            }
+        },
+        "cache": {
+            "driver-class": "LCCloudScaleDriver",
+            "size": "flex-2",
+            "image": "ubuntu-16.04",
+            "connection": {
+                "connection_class": "paramiko"
+            }
+        }
+    },
+    "test-node-types": {
+        "selenium": {
+            "driver-class": "LCCloudScaleDriver",
+            "size": "flex-2",
+            "image": "ubuntu-16.04",
+            "connection": {
+                "connection_class": "paramiko"
+            }
+        },
+        "tsung": {
+            "driver-class": "LCCloudScaleDriver",
+            "size": "flex-2",
+            "image": "ubuntu-16.04",
+            "connection": {
+                "connection_class": "paramiko"
+            }
+        }
+    } 
 }
