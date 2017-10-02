@@ -1,11 +1,8 @@
 {
-	// single sepctacle config
 	"acts": [
 		{
-			// single act config
 			"scenes": [
 				{
-					// single scene config
 					"reconfig-script-path": "./client-name/test/reconfig_before_scene1.sh",
 					"cleanup-script-path": "~/.reefperf/test1/test_node1/cleanup-after_scene1.sh",
 					"type": "tsung",

@@ -12,10 +12,10 @@ class TestTheater(object):
     def setup_class(cls):
         script_path = Path(__file__)
         test_files_dir = script_path.parent.joinpath('test_files')
-        with open(test_files_dir.joinpath("test_app_deployment.json"), "rb") as file:
-            cls.app_deployment_config = json.load(file)
-        with open(test_files_dir.joinpath("test_node_types_config.json"), "rb") as file:
-            cls.theater_config = json.load(file)
+        with open(test_files_dir.joinpath("test_app_deployment.json"), "rb") as config_file:
+            cls.app_deployment_config = json.load(config_file)
+        with open(test_files_dir.joinpath("test_node_types_config.json"), "rb") as config_file:
+            cls.theater_config = json.load(config_file)
 
     @patch.dict(
         "reefperf.cloud_driver.DRIVER_CLASSES",
@@ -25,7 +25,6 @@ class TestTheater(object):
         theater = Theater(
             self.theater_config,
             self.app_deployment_config,
-            {}
         )
         assert len(theater._app_nodes) == 3
         self.check_node_names(theater._app_nodes, "http", ["http"])
@@ -41,4 +40,4 @@ class TestTheater(object):
         }
 
     def check_node_names(self, app_nodes,  node_type, expected_names):
-        assert sorted([node.node_name for node in app_nodes[node_type]]) == expected_names
+        assert sorted(node.node_name for node in app_nodes[node_type]) == expected_names

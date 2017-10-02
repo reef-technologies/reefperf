@@ -19,7 +19,7 @@ class DummyCloudNode(CloudNode):
             "host": self.ipv4,
             "port": "22",
             "private-key-path": self._config["private-key-path"],
-            "username": self.username
+            "username": self.username,
         }
 
     @property

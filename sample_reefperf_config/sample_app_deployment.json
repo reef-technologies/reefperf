@@ -4,12 +4,10 @@
 			{
 				"name": "cache",
 				"type": "cache",
-				// additional args auth_data that allows login to cloud node (exec locally)
 				"deploy-command": "./client-name/cache/deploy.sh"
 			},
 			{
 				"name": "http-static",
-				// universal over all cloud vendors
 				"type": "httpd",
 				"deploy-command": "./client-name/http-static/deploy.sh"
 			},

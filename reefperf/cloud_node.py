@@ -36,6 +36,13 @@ class LCCloudScaleNode(CloudNode):
         self._conn_cfg = conn_cfg
         self._connection_obj = None
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.destroy()
+
+
     @property
     def hostname(self):
         return self._lc_node_obj.public_ips[0]

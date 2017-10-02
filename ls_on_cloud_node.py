@@ -1,9 +1,3 @@
-from io import StringIO
-from pprint import pprint
-
-import libcloud
-import paramiko
-
 from reefperf.cloud_driver import LCCloudScaleDriver
 
 if __name__ == '__main__':
@@ -19,8 +13,7 @@ if __name__ == '__main__':
         }
     }
     driver = LCCloudScaleDriver(credentials)
-    node = driver.create_node(cloud_node_cfg)
-    stdout_ = node.connection.exec_command('ls /')
-    for line in stdout_.readlines():
-        print(line)
-    node.destroy()
+    with driver.create_node(cloud_node_cfg) as node:
+        stdout = node.connection.exec_command('ls /')
+        for line in stdout.readlines():
+            print(line)

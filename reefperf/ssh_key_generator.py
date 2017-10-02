@@ -24,5 +24,5 @@ class ParamikoRSAKeyGenerator(AbstractKeyGenerator):
         return {
             'keys_type': 'rsa',
             'priv_key_str': priv_key_str,
-            'pub_key_str': pub_key_str
+            'pub_key_str': pub_key_str,
         }
