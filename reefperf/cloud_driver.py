@@ -30,12 +30,12 @@ class LCCloudScaleDriver(CloudDriver):
         self._driver = driver_cls(credentials['api_token'])
 
     @property
-    @lru_cache()
+    @lru_cache(maxsize=1)
     def images(self):
         return {image.id: image for image in self._driver.list_images()}
 
     @property
-    @lru_cache()
+    @lru_cache(maxsize=1)
     def sizes(self):
         return {size.id: size for size in self._driver.list_sizes()}
 
@@ -52,3 +52,4 @@ class LCCloudScaleDriver(CloudDriver):
 
 
 DRIVER_CLASSES = {"LCCloudScaleDriver": LCCloudScaleDriver}
+    
