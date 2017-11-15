@@ -1,7 +1,7 @@
 # reefperf - tool for cloud performace measurement
 
 Main purpose of project is creation a tool that allows do a perforamce tests
-and get readable raport from them across many cloud vendors (maybe compare them).
+and get readable report from them across many cloud vendors (maybe compare them).
 
 # Draft
 
@@ -12,10 +12,10 @@ and get readable raport from them across many cloud vendors (maybe compare them)
 2. Create nodes for app testing and put on them test scripts. 
 	Design of these test scripts (for consideration)
 3. Run test scripts simultaneously.
-4. Gather infromation form test nodes.
+4. Gather information from test nodes.
 5. Prepare report from test
 
-## Architecture (except module for raport generator)
+## Architecture (except module for report generator)
 
 ![alt_text](class_diagram.png)
 
