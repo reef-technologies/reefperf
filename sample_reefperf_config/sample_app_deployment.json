@@ -2,19 +2,25 @@
     "app-deployment": {
         "nodes": [
             {
-                "name": "cache",
                 "type": "cache",
-                "deploy-command": "./client-name/cache/deploy.sh"
+                "create-node-parameters": {
+                    "name": "cache",
+                    "deploy-command": "./client-name/cache/deploy.sh"
+                }
             },
             {
-                "name": "http-static",
                 "type": "httpd",
-                "deploy-command": "./client-name/http-static/deploy.sh"
+                "create-node-parameters": {
+                    "name": "http-static",
+                    "deploy-command": "./client-name/http-static/deploy.sh"
+                }
             },
             {
-                "name": "http-dynamic",
                 "type": "httpd",
-                "deploy-command": "./client-name/http-dynamic/deploy.sh"
+                "create-node-parameters": {
+                    "name": "http-dynamic",
+                    "deploy-command": "./client-name/http-dynamic/deploy.sh"
+                }
             }
         ]
     }
