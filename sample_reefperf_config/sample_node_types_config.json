@@ -2,39 +2,84 @@
     "app-node-types": {
         "httpd": {
             "driver-class": "LCCloudScaleDriver",
-            "credentials": {
+            "create-driver-parameters": {
                 "api_token": "token"
             },
-            "size": "flex-2",
-            "image": "ubuntu-16.04",
-            "connection": {
-                "connection_class": "paramiko"
+            "create-node-parameters": {
+                "size": {
+                    "generated": "False",
+                    "value": "flex-2"
+                },
+                "image": {
+                    "generated": "False",
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generated": "True",
+                    "generator-class": "ParamikoConnection"
+                }
             }
         },
         "cache": {
             "driver-class": "LCCloudScaleDriver",
-            "size": "flex-2",
-            "image": "ubuntu-16.04",
-            "connection": {
-                "connection_class": "paramiko"
+            "create-driver-parameters": {
+                "api_token": "token"
+            },
+            "create-node-parameters": {
+                "size": {
+                    "generated": "False",
+                    "value": "flex-2"
+                },
+                "image": {
+                    "generated": "False",
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generated": "True",
+                    "generator-class": "ParamikoConnection"
+                }
             }
         }
     },
     "test-node-types": {
         "selenium": {
             "driver-class": "LCCloudScaleDriver",
-            "size": "flex-2",
-            "image": "ubuntu-16.04",
-            "connection": {
-                "connection_class": "paramiko"
+            "create-driver-parameters": {
+                "api_token": "token"
+            },
+            "create-node-parameters": {
+                "size": {
+                    "generated": "False",
+                    "value": "flex-2"
+                },
+                "image": {
+                    "generated": "False",
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generated": "True",
+                    "generator-class": "ParamikoConnection"
+                }
             }
         },
         "tsung": {
             "driver-class": "LCCloudScaleDriver",
-            "size": "flex-2",
-            "image": "ubuntu-16.04",
-            "connection": {
-                "connection_class": "paramiko"
+            "create-driver-parameters": {
+                "api_token": "token"
+            },
+            "create-node-parameters": {
+                "size": {
+                    "generated": "False",
+                    "value": "flex-2"
+                },
+                "image": {
+                    "generated": "False",
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generated": "True",
+                    "generator-class": "ParamikoConnection"
+                }
             }
         }
     } 
