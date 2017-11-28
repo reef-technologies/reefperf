@@ -4,22 +4,32 @@
             {
                 "type": "cache",
                 "create-node-parameters": {
-                    "name": "cache",
-                    "deploy-command": "./client-name/cache/deploy.sh"
+                    "name": {
+                        "value": "cache"
+                    },
+                    "deploy-command": {
+                        "value": "./client-name/cache/deploy.sh"
+                    }
                 }
             },
             {
                 "type": "httpd",
                 "create-node-parameters": {
-                    "name": "http-static",
-                    "deploy-command": "./client-name/http-static/deploy.sh"
+                    "name": {
+                        "value": "http-static"
+                    },
+                    "deploy-command": {
+                        "value": "./client-name/http-static/deploy.sh"
+                    }
                 }
             },
             {
                 "type": "httpd",
-                "create-node-parameters": {
-                    "name": "http-dynamic",
-                    "deploy-command": "./client-name/http-dynamic/deploy.sh"
+                "name": {
+                    "value": "http-dynamic"
+                },
+                "deploy-command": {
+                    "value": "./client-name/http-dynamic/deploy.sh"
                 }
             }
         ]

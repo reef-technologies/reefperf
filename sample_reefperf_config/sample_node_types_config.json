@@ -7,15 +7,12 @@
             },
             "create-node-parameters": {
                 "size": {
-                    "generated": "False",
                     "value": "flex-2"
                 },
                 "image": {
-                    "generated": "False",
                     "value": "ubuntu-16.04"
                 },
                 "connection": {
-                    "generated": "True",
                     "generator-class": "ParamikoConnection"
                 }
             }
@@ -27,15 +24,12 @@
             },
             "create-node-parameters": {
                 "size": {
-                    "generated": "False",
                     "value": "flex-2"
                 },
                 "image": {
-                    "generated": "False",
                     "value": "ubuntu-16.04"
                 },
                 "connection": {
-                    "generated": "True",
                     "generator-class": "ParamikoConnection"
                 }
             }
@@ -49,15 +43,12 @@
             },
             "create-node-parameters": {
                 "size": {
-                    "generated": "False",
                     "value": "flex-2"
                 },
                 "image": {
-                    "generated": "False",
                     "value": "ubuntu-16.04"
                 },
                 "connection": {
-                    "generated": "True",
                     "generator-class": "ParamikoConnection"
                 }
             }
@@ -69,15 +60,12 @@
             },
             "create-node-parameters": {
                 "size": {
-                    "generated": "False",
                     "value": "flex-2"
                 },
                 "image": {
-                    "generated": "False",
                     "value": "ubuntu-16.04"
                 },
                 "connection": {
-                    "generated": "True",
                     "generator-class": "ParamikoConnection"
                 }
             }
