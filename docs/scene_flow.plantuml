@@ -1,0 +1,14 @@
+@startuml
+Act -> Scene: Scene(node, scene_config, app_url)
+Act <- Scene: scene
+Act -> Scene: play_scene()
+Scene -> Actor: Actor(node, actor_config, app_url)
+Scene <- Actor: actor
+Scene -> Actor: play_role()
+Actor -> TestingToolWrapper: TestingToolWrapper(node, tool_config, app_url)
+Actor <- TestingToolWrapper: testingtoolwrapper
+Actor -> TestingToolWrapper: run_tool()
+Actor <- TestingToolWrapper: test_results
+Scene <- Actor: test_results
+Act <- Scene: test_results
+@enduml

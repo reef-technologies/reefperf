@@ -1,0 +1,24 @@
+@startuml
+TestSuiteRunner -> Theater: Theather(node_types_config, app_deployment_config)
+TestSuiteRunner <- Theater: theater
+TestSuiteRunner -> Director: Director(theater, spectacle_config)
+TestSuiteRunner <- Director: director
+TestSuiteRunner -> Director: run_test()
+Director -> Theater: deploy_app()
+Director <- Theater: app_url
+Director -> Spectacle : Spectacle(theater, spectacle_config, app_url)
+Director <- Spectacle: spectacle
+Director -> Spectacle: play_spectacle()
+Spectacle -> Act : Act(theater, act_config, app_url)
+Spectacle <- Act: act
+Spectacle -> Act: play_act()
+Act -> Theater: create_test_nodes(node_types_list)
+Act <- Theater: nodes
+Act -> Scene: Scene(node, scene_config, app_url)
+Act <- Scene: scene
+Act -> Scene: play_scene()
+Act <- Scene: test_results
+Spectacle <- Act: test_results
+Director <- Spectacle: test_results
+TestSuiteRunner <- Director: test_results
+@enduml
