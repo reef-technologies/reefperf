@@ -5,18 +5,18 @@ TestSuiteRunner -> Director: Director(theater, spectacle_config)
 TestSuiteRunner <- Director: director
 TestSuiteRunner -> Director: run_test()
 Director -> Theater: deploy_app()
-Director <- Theater: app_url
-Director -> Spectacle : Spectacle(theater, spectacle_config, app_url)
+Director <- Theater: app
+Director -> Spectacle : Spectacle(theater, spectacle_config, app)
 Director <- Spectacle: spectacle
-Director -> Spectacle: play_spectacle()
-Spectacle -> Act : Act(theater, act_config, app_url)
+Director -> Spectacle: play()
+Spectacle -> Act : Act(theater, act_config, app)
 Spectacle <- Act: act
-Spectacle -> Act: play_act()
+Spectacle -> Act: play()
 Act -> Theater: create_test_nodes(node_types_list)
 Act <- Theater: nodes
-Act -> Scene: Scene(node, scene_config, app_url)
+Act -> Scene: Scene(node, scene_config, app)
 Act <- Scene: scene
-Act -> Scene: play_scene()
+Act -> Scene: play()
 Act <- Scene: test_results
 Spectacle <- Act: test_results
 Director <- Spectacle: test_results
