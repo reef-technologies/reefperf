@@ -9,13 +9,13 @@ class AbstractKeyGenerator(object):
 
     @classmethod
     @abstractmethod
-    def generate_pair(cls, length):
+    def generate(cls, length):
         pass
 
 
 class ParamikoRSAKeyGenerator(AbstractKeyGenerator):
     @classmethod
-    def generate_pair(cls, length):
+    def generate(cls, length):
         priv_key = RSAKey.generate(bits=length)
         priv_key_stream = StringIO()
         priv_key.write_private_key(priv_key_stream)
