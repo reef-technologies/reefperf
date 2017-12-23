@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from reefperf.node_connection_provider import NodeConnectionProvider
+from reefperf.node_connection import ParamikoConnection
 
 
 class CloudNode(object):
@@ -29,11 +29,11 @@ class LCCloudScaleNode(CloudNode):
     This class is not threadsafe.
     """
 
-    def __init__(self, lc_node_obj, conn_cfg):
+    def __init__(self, lc_node_obj, ssh_keys):
         self._lc_node_obj = lc_node_obj
         self._possible_usernames = ['ubuntu', 'core', 'gentoo', 'centos', 'debian', 'arch', 'fedora']
-        self._conn_cfg = conn_cfg
-        self._connection_obj = None
+        self._ssh_keys = ssh_keys
+        self._connection = None
 
     def __enter__(self):
         return self
@@ -54,12 +54,12 @@ class LCCloudScaleNode(CloudNode):
 
     @property
     def connection(self):
-        if self._connection_obj is not None:
-            return self._connection_obj
-        self._connection_obj = NodeConnectionProvider.create_connection(self._conn_cfg, self.hostname, self.username)
-        return self._connection_obj
+        if self._connection is not None:
+            return self._connection
+        self._connection = ParamikoConnection(self._ssh_keys, self.hostname, self.username)
+        return self._connection
 
     def destroy(self):
-        if self._connection_obj:
-            self._connection_obj.close()
+        if self._connection:
+            self._connection.close()
         self._lc_node_obj.destroy()

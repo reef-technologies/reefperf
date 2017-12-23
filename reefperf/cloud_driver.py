@@ -26,12 +26,12 @@ cloud_drivers = ClassRegistry()
 class LCCloudScaleDriver(CloudDriver):
     SSH_KEY_LENGTH = 4096
 
-    def __init__(self, credentials):
+    def __init__(self, api_token):
         driver_cls = libcloud.get_driver(
             libcloud.DriverType.COMPUTE,
             libcloud.DriverType.COMPUTE.CLOUDSCALE,
         )
-        self._driver = driver_cls(credentials['api_token'])
+        self._driver = driver_cls(api_token)
 
     @property
     @lru_cache(maxsize=1)
@@ -43,13 +43,12 @@ class LCCloudScaleDriver(CloudDriver):
     def sizes(self):
         return {size.id: size for size in self._driver.list_sizes()}
 
-    def create_node(self, cloud_node_cfg):
-        keys = ParamikoRSAKeyGenerator.generate_pair(self.SSH_KEY_LENGTH)
+    def create_node(self, name, size, image):
+        keys = ParamikoRSAKeyGenerator.generate(self.SSH_KEY_LENGTH)
         lc_node_obj = self._driver.create_node(
-            name=cloud_node_cfg['node_name'],
-            size=self.sizes[cloud_node_cfg['size']],
-            image=self.images[cloud_node_cfg['image']],
+            name=name,
+            size=self.sizes[size],
+            image=self.images[image],
             ex_create_attr={'ssh_keys': [keys['pub_key_str']]}
         )
-        cloud_node_cfg['connection']['keys'] = keys
-        return LCCloudScaleNode(lc_node_obj, cloud_node_cfg['connection'])
+        return LCCloudScaleNode(lc_node_obj, keys)
