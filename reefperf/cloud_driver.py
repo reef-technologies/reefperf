@@ -51,4 +51,6 @@ class LCCloudScaleDriver(CloudDriver):
             image=self.images[image],
             ex_create_attr={'ssh_keys': [keys['pub_key_str']]}
         )
+        #TODO some non-blocking solution for waiting when node is ready
+        lc_node_obj.driver.wait_until_running((lc_node_obj,))
         return LCCloudScaleNode(lc_node_obj, keys)
