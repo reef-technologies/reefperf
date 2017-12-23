@@ -2,4 +2,5 @@ apache-libcloud==2.1.0
 class-registry==2.1.0
 paramiko==2.2.1
 py==1.4.34
+pyhaikunator==0.0.4
 pytest==3.1.3

@@ -1,26 +1,19 @@
 {
-    "app-deployment" : {
-        "nodes": [
-            {
-                "name": "http",
+    "app-deployment": {
+        "nodes": {
+            "http": {
                 "type": "http",
                 "deploy-command": "./client-name/http/deploy.sh"
             },
-            {
-                "name": "cache1",
+            "cache": {
                 "type": "cache",
-                "deploy-command": "./client-name/cache/deploy.sh"
+                "deploy-command": "./client-name/cache/deploy.sh",
+                "count": 2
             },
-            {
-                "name": "cache2",
-                "type": "cache",
-                "deploy-command": "./client-name/cache/deploy.sh"
-            },
-            {
-                "name": "database",
+            "database": {
                 "type": "database",
                 "deploy-command": "./client-name/database/deploy.sh"
             }
-        ]
+        }
     }
 }

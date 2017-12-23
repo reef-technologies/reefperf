@@ -1,16 +1,26 @@
-from ipaddress import IPv4Network
-
 from reefperf.cloud_driver import CloudDriver
-from reefperf.tests.dummy_node import DummyCloudNode
+from reefperf.cloud_node import CloudNode
+
+
+class DummyCloudNode(CloudNode):
+    def __init__(self, name, username, deploy_command):
+        self._name = name
+        self._username = username
+        self._deploy_command = deploy_command
+
+    @property
+    def node_name(self):
+        return self._name
+
+    @property
+    def username(self):
+        return self._username
+
+    @property
+    def deploy_command(self):
+        return self._deploy_command
 
 
 class DummyCloudDriver(CloudDriver):
-    IP_POOL = (str(ip_addr) for ip_addr in IPv4Network('10.10.10.0/24'))
-
-    def create_node(self, node_config):
-        node_config = node_config.copy()
-        ip_addr = next(self.IP_POOL)
-        node_config["ipv4"] = ip_addr
-        node_name = node_config["name"]
-        node_config["private-key-path"] = f"~/.ssh/{node_name}/id_rsa"
-        return DummyCloudNode(node_config)
+    def create_node(self, name, username, deploy_command):
+        return DummyCloudNode(name, username, deploy_command)

@@ -1,10 +1,11 @@
 import json
 from pathlib import Path
+from class_registry import RegistryPatcher
 
-from mock import patch
 
 from reefperf.tests.dummy_driver import DummyCloudDriver
 from reefperf.theater import Theater
+from reefperf.cloud_driver import cloud_drivers
 
 
 class TestTheater(object):
@@ -17,23 +18,25 @@ class TestTheater(object):
         with open(test_files_dir.joinpath("test_node_types_config.json"), "rb") as config_file:
             cls.theater_config = json.load(config_file)
 
-    @patch.dict("reefperf.cloud_driver.DRIVER_CLASSES", {"TestCloudDriver": DummyCloudDriver})
     def test_create_app_nodes(self):
-        theater = Theater(
-            self.theater_config,
-            self.app_deployment_config,
-        )
-        assert len(theater._app_nodes) == 3
-        self.check_node_names(theater._app_nodes, "http", ["http"])
-        self.check_node_names(theater._app_nodes, "cache", ["cache1", "cache2"])
-        self.check_node_names(theater._app_nodes, "database", ["database"])
-        http_node = theater._app_nodes["http"][0]
-        assert http_node.ssh_data == {
-            "host": "10.10.10.0",
-            "port": "22",
-            "private-key-path": "~/.ssh/http/id_rsa",
-            "username": "ubuntu",
-        }
+        with RegistryPatcher(cloud_drivers, DummyCloudDriver=DummyCloudDriver):
+            theater = Theater(
+                self.theater_config,
+                self.app_deployment_config,
+            )
+            self.check_node_usernames(theater.app_nodes_by_type("http"), ["http-ubuntu"])
+            self.check_node_usernames(theater.app_nodes_by_type("cache"), 2 * ["cache-ubuntu"])
+            self.check_node_usernames(theater.app_nodes_by_type("database"), ["database-ubuntu"])
+            self.check_node_deploy_command(theater.app_nodes_by_type("http"), ["./client-name/http/deploy.sh"])
+            self.check_node_deploy_command(theater.app_nodes_by_type("cache"), 2 * ["./client-name/cache/deploy.sh"])
+            self.check_node_deploy_command(
+                theater.app_nodes_by_type("database"), ["./client-name/database/deploy.sh"]
+            )
 
-    def check_node_names(self, app_nodes, node_type, expected_names):
-        assert sorted(node.node_name for node in app_nodes[node_type]) == expected_names
+    @classmethod
+    def check_node_usernames(cls, app_nodes, expected_usernames):
+        assert (node.username for node in app_nodes) == expected_usernames
+
+    @classmethod
+    def check_node_deploy_command(cls, app_nodes, expected_commands):
+        assert (node.deploy_command for node in app_nodes) == expected_commands

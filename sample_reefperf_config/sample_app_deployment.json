@@ -1,37 +1,19 @@
 {
     "app-deployment": {
-        "nodes": [
-            {
+        "nodes": {
+            "cache": {
                 "type": "cache",
-                "create-node-parameters": {
-                    "name": {
-                        "value": "cache"
-                    },
-                    "deploy-command": {
-                        "value": "./client-name/cache/deploy.sh"
-                    }
-                }
+                "deploy-command": "./client-name/cache/deploy.sh"
             },
-            {
+            "http-static": {
                 "type": "httpd",
-                "create-node-parameters": {
-                    "name": {
-                        "value": "http-static"
-                    },
-                    "deploy-command": {
-                        "value": "./client-name/http-static/deploy.sh"
-                    }
-                }
+                "deploy-command": "./client-name/http-static/deploy.sh"
             },
-            {
+            "http-dynamic": {
+                "count": 2,
                 "type": "httpd",
-                "name": {
-                    "value": "http-dynamic"
-                },
-                "deploy-command": {
-                    "value": "./client-name/http-dynamic/deploy.sh"
-                }
+                "deploy-command": "./client-name/http-dynamic/deploy.sh"
             }
-        ]
+        }
     }
 }

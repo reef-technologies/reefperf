@@ -2,16 +2,19 @@ from abc import ABCMeta, abstractmethod
 from functools import lru_cache
 
 import libcloud
+from class_registry import ClassRegistry, ClassRegistryInstanceCache
 
 from reefperf.cloud_node import LCCloudScaleNode
-from reefperf.ssh_key_generator import ParamikoRSAKeyGenerator
+from reefperf.generators.ssh_key_generator import ParamikoRSAKeyGenerator
+
+cloud_drivers = ClassRegistry()
 
 
 class CloudDriver(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def create_node(self, cloud_node_cfg):
+    def create_node(self, *args):
         pass
 
 
@@ -19,6 +22,7 @@ class CloudDriver(object):
 # all classes with prefix LC using this libcloud for operating on cloud nodes
 
 
+@cloud_drivers.register("LCCloudScaleDriver")
 class LCCloudScaleDriver(CloudDriver):
     SSH_KEY_LENGTH = 4096
 
@@ -51,5 +55,4 @@ class LCCloudScaleDriver(CloudDriver):
         return LCCloudScaleNode(lc_node_obj, cloud_node_cfg['connection'])
 
 
-DRIVER_CLASSES = {"LCCloudScaleDriver": LCCloudScaleDriver}
-    
+cloud_drivers_registry = ClassRegistryInstanceCache(cloud_drivers)

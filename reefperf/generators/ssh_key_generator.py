@@ -15,7 +15,7 @@ class AbstractKeyGenerator(object):
 
 class ParamikoRSAKeyGenerator(AbstractKeyGenerator):
     @classmethod
-    def generate(cls, length):
+    def generate(cls, length=2048):
         priv_key = RSAKey.generate(bits=length)
         priv_key_stream = StringIO()
         priv_key.write_private_key(priv_key_stream)
