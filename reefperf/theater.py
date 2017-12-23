@@ -17,16 +17,20 @@ class Theater(object):
         nodes = defaultdict(list)
         for node_type, node_deploy_config in self._app_deployment_config["app_deployment"]["nodes"].items():
             node_num = node_deploy_config.get("count", 1)
-            driver_manager = DriverManager.get_instance()
-            driver_class = self._node_types_config["app_node_types"][node_type]["driver_class"]
-            driver_parameters = self._node_types_config["app_node_types"][node_type]["create_driver_parameters"]
-            driver = driver_manager.get_driver(driver_class, **driver_parameters)
-            ready_parameters = CreateNodeParametersGenerator.generate(
-                node_type,
-                self._node_types_config["app_node_types"][node_type]["create_node_parameters"],
-                node_deploy_config
-            )
             for _ in range(node_num):
-                node = driver.create_node(**ready_parameters)
+                node = self._create_node(node_type)
                 nodes[node_type].append(node)
         return nodes
+
+    def _create_node(self, node_type):
+        node_deploy_config = self._app_deployment_config["app_deployment"]["nodes"][node_type]
+        driver_manager = DriverManager.get_instance()
+        driver_class = self._node_types_config["app_node_types"][node_type]["driver_class"]
+        driver_parameters = self._node_types_config["app_node_types"][node_type]["create_driver_parameters"]
+        driver = driver_manager.get_driver(driver_class, **driver_parameters)
+        ready_parameters = CreateNodeParametersGenerator.generate(
+            node_type,
+            self._node_types_config["app_node_types"][node_type]["create_node_parameters"],
+            node_deploy_config
+        )
+        return driver.create_node(**ready_parameters)
