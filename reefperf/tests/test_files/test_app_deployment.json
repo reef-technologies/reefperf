@@ -1,18 +1,15 @@
 {
-    "app-deployment": {
+    "app_deployment": {
         "nodes": {
             "http": {
-                "type": "http",
-                "deploy-command": "./client-name/http/deploy.sh"
+                "deploy_command": "./client_name/http/deploy.sh"
             },
             "cache": {
-                "type": "cache",
-                "deploy-command": "./client-name/cache/deploy.sh",
+                "deploy_command": "./client_name/cache/deploy.sh",
                 "count": 2
             },
             "database": {
-                "type": "database",
-                "deploy-command": "./client-name/database/deploy.sh"
+                "deploy_command": "./client_name/database/deploy.sh"
             }
         }
     }

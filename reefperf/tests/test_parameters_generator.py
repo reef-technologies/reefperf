@@ -17,7 +17,6 @@ class DummyConnection(object):
 class TestCreateNodeParametersGenerator(object):
     def test_crate_node_parameters_generator(self):
         node_deploy_params = {
-            "type": "cache",
             "deploy-command": "./client-name/cache/deploy.sh",
         }
         node_type_params = {
@@ -45,5 +44,5 @@ class TestCreateNodeParametersGenerator(object):
             },
         }
         with RegistryPatcher(generators_registry, DummyConnection=DummyConnection):
-            generated_params = CreateNodeParametersGenerator.generate(node_type_params, node_deploy_params)
+            generated_params = CreateNodeParametersGenerator.generate("cache", node_type_params, node_deploy_params)
             assert expected_params.items() <= generated_params.items()

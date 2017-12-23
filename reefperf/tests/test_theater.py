@@ -24,19 +24,19 @@ class TestTheater(object):
                 self.theater_config,
                 self.app_deployment_config,
             )
-            self.check_node_usernames(theater.app_nodes_by_type("http"), ["http-ubuntu"])
-            self.check_node_usernames(theater.app_nodes_by_type("cache"), 2 * ["cache-ubuntu"])
-            self.check_node_usernames(theater.app_nodes_by_type("database"), ["database-ubuntu"])
-            self.check_node_deploy_command(theater.app_nodes_by_type("http"), ["./client-name/http/deploy.sh"])
-            self.check_node_deploy_command(theater.app_nodes_by_type("cache"), 2 * ["./client-name/cache/deploy.sh"])
+            self.check_node_usernames(theater.app_nodes_by_type("http"), ["http_ubuntu"])
+            self.check_node_usernames(theater.app_nodes_by_type("cache"), 2 * ["cache_ubuntu"])
+            self.check_node_usernames(theater.app_nodes_by_type("database"), ["database_ubuntu"])
+            self.check_node_deploy_command(theater.app_nodes_by_type("http"), ["./client_name/http/deploy.sh"])
+            self.check_node_deploy_command(theater.app_nodes_by_type("cache"), 2 * ["./client_name/cache/deploy.sh"])
             self.check_node_deploy_command(
-                theater.app_nodes_by_type("database"), ["./client-name/database/deploy.sh"]
+                theater.app_nodes_by_type("database"), ["./client_name/database/deploy.sh"]
             )
 
     @classmethod
     def check_node_usernames(cls, app_nodes, expected_usernames):
-        assert (node.username for node in app_nodes) == expected_usernames
+        assert sorted(node.username for node in app_nodes) == expected_usernames
 
     @classmethod
     def check_node_deploy_command(cls, app_nodes, expected_commands):
-        assert (node.deploy_command for node in app_nodes) == expected_commands
+        assert sorted(node.deploy_command for node in app_nodes) == expected_commands

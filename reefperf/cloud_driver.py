@@ -2,12 +2,10 @@ from abc import ABCMeta, abstractmethod
 from functools import lru_cache
 
 import libcloud
-from class_registry import ClassRegistry, ClassRegistryInstanceCache
+from class_registry import ClassRegistry
 
 from reefperf.cloud_node import LCCloudScaleNode
 from reefperf.generators.ssh_key_generator import ParamikoRSAKeyGenerator
-
-cloud_drivers = ClassRegistry()
 
 
 class CloudDriver(object):
@@ -17,6 +15,8 @@ class CloudDriver(object):
     def create_node(self, *args):
         pass
 
+
+cloud_drivers = ClassRegistry()
 
 # LC is a short for apache libcloud. It means that
 # all classes with prefix LC using this libcloud for operating on cloud nodes
@@ -53,6 +53,3 @@ class LCCloudScaleDriver(CloudDriver):
         )
         cloud_node_cfg['connection']['keys'] = keys
         return LCCloudScaleNode(lc_node_obj, cloud_node_cfg['connection'])
-
-
-cloud_drivers_registry = ClassRegistryInstanceCache(cloud_drivers)
