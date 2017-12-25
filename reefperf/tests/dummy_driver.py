@@ -3,7 +3,7 @@ from reefperf.cloud_node import CloudNode
 
 
 class DummyCloudNode(CloudNode):
-    def __init__(self, name, username, deploy_command):
+    def __init__(self, name, username, deploy_command=None):
         self._name = name
         self._username = username
         self._deploy_command = deploy_command
@@ -22,5 +22,5 @@ class DummyCloudNode(CloudNode):
 
 
 class DummyCloudDriver(CloudDriver):
-    def create_node(self, name, username, deploy_command):
+    def create_node(self, name, username, deploy_command=None):
         return DummyCloudNode(name, username, deploy_command)

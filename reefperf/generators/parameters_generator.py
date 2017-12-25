@@ -19,7 +19,7 @@ class CreateNodeParametersGenerator(object):
     NAME_GENERATOR_CLS = NodeNameGenerator
 
     @classmethod
-    def generate(cls, node_type, node_type_params, node_deploy_params):
+    def generate(cls, node_type, node_type_params, node_deploy_params=None):
         ready_params = {}
         for param_name, param_config in node_type_params.items():
             if cls.VALUE in param_config:
@@ -29,7 +29,8 @@ class CreateNodeParametersGenerator(object):
                 generator_cls = generators_registry.get_class(generator_cls_name)
                 generator_params = param_config[cls.GEN_PARAMS]
                 ready_params[param_name] = generator_cls.generate(**generator_params)
-        ready_params.update(node_deploy_params)
+        if node_deploy_params is not None:
+            ready_params.update(node_deploy_params)
         if cls.COUNT in ready_params:
             ready_params.pop(cls.COUNT)
         node_name = cls.NAME_GENERATOR_CLS.generate(node_type)

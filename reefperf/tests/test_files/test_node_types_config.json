@@ -28,5 +28,24 @@
 			}
 		}
 	},
-	"test_nodes_types": {}
+	"test_node_types": {
+		"selenium": {
+			"driver_class": "DummyCloudDriver",
+			"create_driver_parameters": {},
+			"create_node_parameters": {
+				"username": {
+					"value": "selenium_ubuntu"
+				}
+			}
+		},
+		"tsung": {
+			"driver_class": "DummyCloudDriver",
+			"create_driver_parameters": {},
+			"create_node_parameters": {
+				"username": {
+					"value": "tsung_ubuntu"
+				}
+			}
+		}
+	}
 }
