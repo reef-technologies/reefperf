@@ -1,0 +1,74 @@
+{
+    "app-node-types": {
+        "httpd": {
+            "driver-class": "LCCloudScaleDriver",
+            "create-driver-parameters": {
+                "api_token": "token"
+            },
+            "create-node-parameters": {
+                "size": {
+                    "value": "flex-2"
+                },
+                "image": {
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generator-class": "ParamikoConnection"
+                }
+            }
+        },
+        "cache": {
+            "driver-class": "LCCloudScaleDriver",
+            "create-driver-parameters": {
+                "api_token": "token"
+            },
+            "create-node-parameters": {
+                "size": {
+                    "value": "flex-2"
+                },
+                "image": {
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generator-class": "ParamikoConnection"
+                }
+            }
+        }
+    },
+    "test-node-types": {
+        "selenium": {
+            "driver-class": "LCCloudScaleDriver",
+            "create-driver-parameters": {
+                "api_token": "token"
+            },
+            "create-node-parameters": {
+                "size": {
+                    "value": "flex-2"
+                },
+                "image": {
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generator-class": "ParamikoConnection"
+                }
+            }
+        },
+        "tsung": {
+            "driver-class": "LCCloudScaleDriver",
+            "create-driver-parameters": {
+                "api_token": "token"
+            },
+            "create-node-parameters": {
+                "size": {
+                    "value": "flex-2"
+                },
+                "image": {
+                    "value": "ubuntu-16.04"
+                },
+                "connection": {
+                    "generator-class": "ParamikoConnection"
+                }
+            }
+        }
+    } 
+}

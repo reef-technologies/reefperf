@@ -1,0 +1,16 @@
+{
+    "app_deployment": {
+        "nodes": {
+            "http": {
+                "deploy_command": "./client_name/http/deploy.sh"
+            },
+            "cache": {
+                "deploy_command": "./client_name/cache/deploy.sh",
+                "count": 2
+            },
+            "database": {
+                "deploy_command": "./client_name/database/deploy.sh"
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "app-deployment": {
+        "nodes": {
+            "cache": {
+                "type": "cache",
+                "deploy-command": "./client-name/cache/deploy.sh"
+            },
+            "http-static": {
+                "type": "httpd",
+                "deploy-command": "./client-name/http-static/deploy.sh"
+            },
+            "http-dynamic": {
+                "count": 2,
+                "type": "httpd",
+                "deploy-command": "./client-name/http-dynamic/deploy.sh"
+            }
+        }
+    }
+}
