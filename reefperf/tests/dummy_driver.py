@@ -20,6 +20,9 @@ class DummyCloudNode(CloudNode):
     def deploy_command(self):
         return self._deploy_command
 
+    def destroy(self):
+        pass
+
 
 class DummyCloudDriver(CloudDriver):
     def create_node(self, name, username, deploy_command=None):

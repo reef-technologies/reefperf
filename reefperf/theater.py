@@ -49,9 +49,13 @@ class Theater(object):
         return driver.create_node(**ready_parameters)
 
     def create_test_nodes(self, node_types):
-        return (
+        return [
             self._create_test_node(node_type) for node_type in node_types
-        )
+        ]
+
+    def destroy_test_nodes(self, test_nodes):
+        for node in test_nodes:
+            node.destroy()
 
     def deploy_app(self):
         # TODO implement it

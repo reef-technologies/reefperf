@@ -28,7 +28,7 @@ class Spectacle(object):
     def play(self):
         results = ()
         for act_config in self._spectacle_config["acts"]:
-            act_results = Act(self._theater, act_config, self._app)
+            act_results = Act(self._theater, act_config, self._app).play()
             results = itertools.chain(results, act_results)
         return results
 
@@ -47,19 +47,19 @@ class Act(object):
         for node, scene_config in zip(test_nodes, self._act_config["scenes"]):
             thread = Thread(target=self._worker, args=(node, scene_config, self._app,), daemon=True)
             self._threads.append(thread)
-            thread.run()
+            thread.start()
         self._join_threads()
-        self._collect_results()
+        self._theater.destroy_test_nodes(test_nodes)
+        return self._collect_results()
 
     def _get_node_types(self):
         return (
-            scene_config["node_type"] for scene_config in self._act_config
+            scene_config["node_type"] for scene_config in self._act_config["scenes"]
         )
 
     def _worker(self, node, scene_config, app):
-        with node:
-            test_results = Scene(node, scene_config, app).play()
-            self._results_queue.put(test_results)
+        test_results = Scene(node, scene_config, app).play()
+        self._results_queue.put(test_results)
 
     def _join_threads(self):
         for thread in self._threads:

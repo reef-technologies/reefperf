@@ -29,12 +29,12 @@
 		}
 	},
 	"test_node_types": {
-		"selenium": {
+		"dummy": {
 			"driver_class": "DummyCloudDriver",
 			"create_driver_parameters": {},
 			"create_node_parameters": {
 				"username": {
-					"value": "selenium_ubuntu"
+					"value": "dummy_ubuntu"
 				}
 			}
 		},
@@ -46,6 +46,16 @@
 					"value": "tsung_ubuntu"
 				}
 			}
+		},
+		"selenium": {
+			"driver_class": "DummyCloudDriver",
+			"create_driver_parameters": {},
+			"create_node_parameters": {
+				"username": {
+					"value": "selenium_ubuntu"
+				}
+			}
 		}
+
 	}
 }
