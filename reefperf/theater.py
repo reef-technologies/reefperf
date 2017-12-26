@@ -1,3 +1,4 @@
+import itertools
 from collections import defaultdict
 
 from reefperf.driver_manager import DriverManager
@@ -46,3 +47,19 @@ class Theater(object):
             self._node_types_config["test_node_types"][node_type]["create_node_parameters"],
         )
         return driver.create_node(**ready_parameters)
+
+    def create_test_nodes(self, node_types):
+        return (
+            self._create_test_node(node_type) for node_type in node_types
+        )
+
+    def deploy_app(self):
+        # TODO implement it
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        for app_node in itertools.chain(*self._app_nodes.values()):
+            app_node.destroy()
