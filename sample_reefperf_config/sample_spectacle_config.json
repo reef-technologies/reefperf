@@ -10,8 +10,8 @@
                         {
                             "role": [
                                 {
-                                    "scene-class": "TsungScene",
-                                    "params": {
+                                    "testing_tool_class": "TsungScene",
+                                    "parameters": {
                                         "n": 1000,
                                         "c": 10
                                     }
