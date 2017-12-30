@@ -44,5 +44,5 @@ class TestCreateNodeParametersGenerator(object):
             },
         }
         with RegistryPatcher(generators_registry, DummyConnection=DummyConnection):
-            generated_params = CreateNodeParametersGenerator.generate("cache", node_type_params, node_deploy_params)
+            generated_params = CreateNodeParametersGenerator().generate("cache", node_type_params, node_deploy_params)
             assert expected_params.items() <= generated_params.items()

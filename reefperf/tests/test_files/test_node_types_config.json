@@ -1,32 +1,29 @@
 {
-	"app_node_types": {
-		"http": {
-			"driver_class": "DummyCloudDriver",
-			"create_driver_parameters": {},
-			"create_node_parameters": {
-				"username": {
-					"value": "http_ubuntu"
-				}
-			}
-		},
-		"cache": {
-			"driver_class": "DummyCloudDriver",
-			"create_driver_parameters": {},
-			"create_node_parameters": {
-				"username": {
-					"value": "cache_ubuntu"
-				}
-			}
-		},
-		"database": {
-			"driver_class": "DummyCloudDriver",
-			"create_driver_parameters": {},
-			"create_node_parameters": {
-				"username": {
-					"value": "database_ubuntu"
-				}
-			}
-		}
-	},
-	"test_nodes_types": {}
+    "app_node_types": {
+        "http": {
+            "driver_class": "DummyCloudDriver",
+            "create_node_parameters": {
+                "username": {
+                    "value": "http_ubuntu"
+                }
+            }
+        },
+        "cache": {
+            "driver_class": "DummyCloudDriver",
+            "create_node_parameters": {
+                "username": {
+                    "value": "cache_ubuntu"
+                }
+            }
+        },
+        "database": {
+            "driver_class": "DummyCloudDriver",
+            "create_node_parameters": {
+                "username": {
+                    "value": "database_ubuntu"
+                }
+            }
+        }
+    },
+    "test_nodes_types": {}
 }
