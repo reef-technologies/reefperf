@@ -1,63 +1,63 @@
 {
-	"acts": [
+    "acts": [
         {
-			"scenes": [{
-				"node_type": "dummy",
-				"actors": [{
-					"role": [{
-						"testing_tool_class": "DummyTestingToolWrapper",
-						"parameters": {
-							"dummy_parameter": 1
-						}
-					}]
-				}]
-			}]
-		},
-		{
-			"scenes": [
+            "scenes": [{
+                "node_type": "dummy",
+                "actors": [{
+                    "role": [{
+                        "testing_tool_class": "DummyTestingToolWrapper",
+                        "parameters": {
+                            "dummy_parameter": 1
+                        }
+                    }]
+                }]
+            }]
+        },
+        {
+            "scenes": [
                 {
-					"node_type": "dummy",
-					"actors": [{
-						"role": [
+                    "node_type": "dummy",
+                    "actors": [{
+                        "role": [
                             {
-								"testing_tool_class": "DummyTestingToolWrapper",
-								"parameters": {
-									"dummy_parameter": 2
-								}
-							},
-							{
-								"testing_tool_class": "DummyTestingToolWrapper",
-								"parameters": {
-									"dummy_parameter": 4
-								}
-							}
-						]
-					}]
-				},
-				{
-					"node_type": "dummy",
-					"actors": [{
-						"role": [{
-							"testing_tool_class": "DummyTestingToolWrapper",
-							"parameters": {
-								"dummy_parameter": 3
-							}
-						}]
-					}]
-				},
-				{
-					"node_type": "dummy",
-					"actors": [{
-						"role": [{
-							"testing_tool_class": "DummyTestingToolWrapper",
-							"parameters": {
-								"dummy_parameter": 4
-							}
-						}]
-					}]
-				}
+                                "testing_tool_class": "DummyTestingToolWrapper",
+                                "parameters": {
+                                    "dummy_parameter": 2
+                                }
+                            },
+                            {
+                                "testing_tool_class": "DummyTestingToolWrapper",
+                                "parameters": {
+                                    "dummy_parameter": 4
+                                }
+                            }
+                        ]
+                    }]
+                },
+                {
+                    "node_type": "dummy",
+                    "actors": [{
+                        "role": [{
+                            "testing_tool_class": "DummyTestingToolWrapper",
+                            "parameters": {
+                                "dummy_parameter": 3
+                            }
+                        }]
+                    }]
+                },
+                {
+                    "node_type": "dummy",
+                    "actors": [{
+                        "role": [{
+                            "testing_tool_class": "DummyTestingToolWrapper",
+                            "parameters": {
+                                "dummy_parameter": 4
+                            }
+                        }]
+                    }]
+                }
 
-			]
-		}
-	]
+            ]
+        }
+    ]
 }
