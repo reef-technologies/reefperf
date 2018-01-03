@@ -5,9 +5,7 @@ from abc import ABCMeta, abstractmethod
 from class_registry import ClassRegistry
 
 
-class TestingToolWrapper(object):
-    __metaclass__ = ABCMeta
-
+class TestingToolWrapper(object, metaclass=ABCMeta):
     @abstractmethod
     def run_tool(self, node, app):
         pass

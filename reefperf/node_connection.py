@@ -5,9 +5,7 @@ from paramiko import AutoAddPolicy, SSHClient
 from paramiko.rsakey import RSAKey
 
 
-class NodeConnection(object):
-    __metaclass__ = ABCMeta
-
+class NodeConnection(object, metaclass=ABCMeta):
     @abstractmethod
     def exec_command(self, command_str):
         pass

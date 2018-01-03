@@ -20,6 +20,10 @@ class DummyCloudNode(CloudNode):
     def deploy_command(self):
         return self._deploy_command
 
+    @property
+    def connection(self):
+        raise NotImplementedError()
+
     def destroy(self):
         pass
 

@@ -13,9 +13,7 @@ class NodeNameGenerator(object):
         return f"{node_type}-{Haikunator.haikunate(0)}-{next(self.counter)}"
 
 
-class CreateNodeParametersGenerator(object):
-    __metaclass__ = Singleton
-
+class CreateNodeParametersGenerator(object, metaclass=Singleton):
     VALUE = 'value'
     GENERATOR = 'generator-class'
     GEN_PARAMS = 'generator-parameters'

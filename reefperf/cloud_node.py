@@ -3,9 +3,7 @@ from abc import ABCMeta, abstractmethod
 from reefperf.node_connection import ParamikoConnection
 
 
-class CloudNode(object):
-    __metaclass__ = ABCMeta
-
+class CloudNode(object, metaclass=ABCMeta):
     @property
     @abstractmethod
     def connection(self):
