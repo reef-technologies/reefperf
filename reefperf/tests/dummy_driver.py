@@ -22,7 +22,7 @@ class DummyCloudNode(CloudNode):
 
     @property
     def connection(self):
-        raise NotImplementedError()
+        raise NotImplementedError("DummyCloudNode does not support remote connection")
 
     def destroy(self):
         pass

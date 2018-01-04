@@ -80,10 +80,8 @@ class Scene(object):
         self._app = app
 
     def play(self):
-        results = ()
         for actor_config in self._scene_config["actors"]:
-            results = itertools.chain(results, Actor(self._node, actor_config, self._app).play())
-        return results
+            yield from Actor(self._node, actor_config, self._app).play()
 
 
 class Actor(object):

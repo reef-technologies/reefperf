@@ -69,5 +69,6 @@ class Theater(object):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        for app_node in itertools.chain(*self._app_nodes.values()):
-            app_node.destroy()
+        for app_nodes in self._app_nodes.values():
+            for app_node in app_nodes:
+                app_node.destroy()
