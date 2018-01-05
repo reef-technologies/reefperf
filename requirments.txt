@@ -1,4 +1,4 @@
-apache-libcloud==2.1.0
+apache-libcloud==2.2.1
 class-registry==2.1.0
 frozendict==1.2
 paramiko==2.2.1
