@@ -13,9 +13,7 @@ class NodeNameGenerator(object):
         return f"{node_type}-{Haikunator.haikunate(0)}-{next(self.counter)}"
 
 
-class CreateNodeParametersGenerator(object):
-    __metaclass__ = Singleton
-
+class CreateNodeParametersGenerator(object, metaclass=Singleton):
     VALUE = 'value'
     GENERATOR = 'generator-class'
     GEN_PARAMS = 'generator-parameters'
@@ -26,7 +24,7 @@ class CreateNodeParametersGenerator(object):
     def __init__(self):
         self._node_name_generator = NodeNameGenerator()
 
-    def generate(self, node_type, node_type_params, node_deploy_params):
+    def generate(self, node_type, node_type_params, node_deploy_params=None):
         """
         This method returns dict with parameters for
         create_node method call in CloudDriver subclass, based on
@@ -42,7 +40,8 @@ class CreateNodeParametersGenerator(object):
                 generator_cls = generators_registry.get_class(generator_cls_name)
                 generator_params = param_config[self.GEN_PARAMS]
                 ready_params[param_name] = generator_cls.generate(**generator_params)
-        ready_params.update(node_deploy_params)
+        if node_deploy_params is not None:
+            ready_params.update(node_deploy_params)
         if self.COUNT in ready_params:
             ready_params.pop(self.COUNT)
         node_name = self._node_name_generator.generate(node_type)

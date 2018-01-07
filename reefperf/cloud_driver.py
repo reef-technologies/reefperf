@@ -8,9 +8,7 @@ from reefperf.cloud_node import LCCloudScaleNode
 from reefperf.generators.ssh_key_generator import ParamikoRSAKeyGenerator
 
 
-class CloudDriver(object):
-    __metaclass__ = ABCMeta
-
+class CloudDriver(object, metaclass=ABCMeta):
     @abstractmethod
     def create_node(self, *args):
         pass

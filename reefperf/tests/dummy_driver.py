@@ -3,7 +3,7 @@ from reefperf.cloud_node import CloudNode
 
 
 class DummyCloudNode(CloudNode):
-    def __init__(self, name, username, deploy_command):
+    def __init__(self, name, username, deploy_command=None):
         self._name = name
         self._username = username
         self._deploy_command = deploy_command
@@ -20,7 +20,14 @@ class DummyCloudNode(CloudNode):
     def deploy_command(self):
         return self._deploy_command
 
+    @property
+    def connection(self):
+        raise NotImplementedError("DummyCloudNode does not support remote connection")
+
+    def destroy(self):
+        pass
+
 
 class DummyCloudDriver(CloudDriver):
-    def create_node(self, name, username, deploy_command):
+    def create_node(self, name, username, deploy_command=None):
         return DummyCloudNode(name, username, deploy_command)

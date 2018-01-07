@@ -4,9 +4,7 @@ from io import StringIO
 from paramiko.rsakey import RSAKey
 
 
-class AbstractKeyGenerator(object):
-    __metaclass__ = ABCMeta
-
+class AbstractKeyGenerator(object, metaclass=ABCMeta):
     @classmethod
     @abstractmethod
     def generate(cls, length):

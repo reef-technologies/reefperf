@@ -25,5 +25,34 @@
             }
         }
     },
-    "test_nodes_types": {}
+    "test_node_types": {
+        "dummy": {
+            "driver_class": "DummyCloudDriver",
+            "create_driver_parameters": {},
+            "create_node_parameters": {
+                "username": {
+                    "value": "dummy_ubuntu"
+                }
+            }
+        },
+        "tsung": {
+            "driver_class": "DummyCloudDriver",
+            "create_driver_parameters": {},
+            "create_node_parameters": {
+                "username": {
+                    "value": "tsung_ubuntu"
+                }
+            }
+        },
+        "selenium": {
+            "driver_class": "DummyCloudDriver",
+            "create_driver_parameters": {},
+            "create_node_parameters": {
+                "username": {
+                    "value": "selenium_ubuntu"
+                }
+            }
+        }
+ 
+    }
 }
