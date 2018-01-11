@@ -27,6 +27,9 @@ class DummyCloudNode(CloudNode):
     def destroy(self):
         pass
 
+    def deploy(self):
+        pass
+
 
 class DummyCloudDriver(CloudDriver):
     def create_node(self, name, username, deploy_command=None):

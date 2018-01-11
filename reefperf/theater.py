@@ -1,4 +1,3 @@
-import itertools
 from collections import defaultdict
 from frozendict import frozendict
 
@@ -62,8 +61,9 @@ class Theater(object):
             node.destroy()
 
     def deploy_app(self):
-        # TODO implement it
-        pass
+        for app_nodes in self._app_nodes.values():
+            for app_node in app_nodes:
+                app_node.deploy()
 
     def __enter__(self):
         return self
