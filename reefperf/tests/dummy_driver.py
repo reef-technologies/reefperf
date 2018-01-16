@@ -21,6 +21,10 @@ class DummyCloudNode(CloudNode):
         return self._deploy_command
 
     @property
+    def ssh_data(self):
+        raise NotImplementedError("DummyCloudNode does not support remote connection")
+
+    @property
     def connection(self):
         raise NotImplementedError("DummyCloudNode does not support remote connection")
 
@@ -28,7 +32,7 @@ class DummyCloudNode(CloudNode):
         pass
 
     def deploy(self):
-        pass
+        return {}
 
 
 class DummyCloudDriver(CloudDriver):

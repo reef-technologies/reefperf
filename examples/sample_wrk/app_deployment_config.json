@@ -1,8 +1,8 @@
 {
-    "app-deployment": {
+    "app_deployment": {
         "nodes": {
             "http": {
-                "deploy-command": "./http_deploy.sh"
+                "deploy_command": "./http_deploy.sh"
             }
         }
     }
