@@ -41,6 +41,7 @@ class ParamikoConnection(NodeConnection):
 
     def exec_command(self, command_str):
         _, stdout, _ = self.client.exec_command(command_str)
+        stdout.channel.recv_exit_status()
         return stdout
 
     def scp_file(self, path_to_file):
