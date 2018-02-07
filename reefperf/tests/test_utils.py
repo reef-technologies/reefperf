@@ -8,8 +8,5 @@ class TestUtils(object):
             * Support:        https://ubuntu.com/advantage\n\n\
             Get cloud support with Ubuntu Advantage Cloud Guest:\n\
             http://www.ubuntu.com/business/services/cloud\n\n0 packages can be updated.\n\
-            0 updates are security updates.\n\n\n\
-            reefperf capture begin\n\
-            http=http://5.102.147.22:8000\n\
-            reefperf capture end\n'
+            0 updates are security updates.\n\n\n<<<<<\nhttp=http://5.102.147.22:8000\n>>>>>\n'
         assert get_node_resources(output) == {'http': 'http://5.102.147.22:8000'}

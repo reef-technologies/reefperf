@@ -47,7 +47,7 @@ class ParamikoConnection(NodeConnection):
         raise NotImplementedError()
 
     def dump_private_key_to_file(self, node_name):
-        key_path = f'/tmp/{node_name}'
+        key_path = f'/tmp/reef-perf-key-{node_name}-{os.getpid()}'
         if os.path.isfile(key_path):
             os.remove(key_path)
         with open(key_path, 'w') as key_file:

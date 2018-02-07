@@ -1,5 +1,6 @@
-CAPTURE_BEGIN = 'reefperf capture begin'
-CAPTURE_END = 'reefperf capture end'
+CAPTURE_BEGIN = '<<<<<'
+CAPTURE_END = '>>>>>'
+SEPARATOR = '='
 
 
 class Singleton(type):
@@ -17,15 +18,22 @@ def get_node_resources(deploy_script_output):
     node_resources = {}
     capture_line = False
     for line in deploy_script_output.decode('utf-8').split('\n'):
-        line = line.strip()
-        if line.lower() == CAPTURE_BEGIN:
+        line = line.rstrip("\n")
+        if line == CAPTURE_BEGIN:
             capture_line = True
             continue
-        if line.lower() == CAPTURE_END:
+        if line == CAPTURE_END:
             capture_line = False
         if capture_line:
-            tokens = line.split('=')
-            service_name = tokens[0]
-            service = tokens[1]
+            service_name, _, service = line.partition(SEPARATOR)
             node_resources[service_name] = service
     return node_resources
+
+
+def is_valid_deploy_command(deploy_command):
+    #TODO validate logic
+    return True
+
+
+class InvalidDeployCommand(Exception):
+    pass
