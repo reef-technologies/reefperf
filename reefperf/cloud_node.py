@@ -23,7 +23,10 @@ class CloudNode(object, metaclass=DefaultTraceAbstractMeta):
         pass
 
     def deploy(self):
-        completed = subprocess.run([f"{self._deploy_command} {self.ssh_data}"], shell=True, stdout=subprocess.PIPE)
+        deploy_command = f"{self._deploy_command} {self.ssh_data}"
+        if not utils.is_valid_deploy_command(deploy_command):
+            raise utils.InvalidDeployCommand()
+        completed = subprocess.run([deploy_command], shell=True, stdout=subprocess.PIPE)
         return utils.get_node_resources(completed.stdout)
 
 # LC is a short for apache libcloud. It means that

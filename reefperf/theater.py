@@ -78,6 +78,14 @@ class Theater(object):
 
 
 class Application(object):
+    """
+    Represents all resources offered by deployed application.
+    Eg. http application url, database url, cache etc.
+    Sample application resources: {
+        "http": "http://localhost/app",
+        "database_url": "postgres://user:password@hostname:port/database-name",
+    }
+    """
     def __init__(self):
         self._resources = {}
 
