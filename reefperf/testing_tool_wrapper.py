@@ -1,4 +1,3 @@
-import itertools
 import time
 
 from abc import ABCMeta, abstractmethod
