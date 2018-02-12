@@ -18,4 +18,4 @@ if __name__ == '__main__':
             results = WrkWrapper(1, 1, 1).run_tool(test_node, app)
             for line in results.readlines():
                 print(line)
-        input("Deployed app on node and made tests. Press enter for delete nodes")
+            input("Deployed app on node and made tests. Press enter for delete nodes")

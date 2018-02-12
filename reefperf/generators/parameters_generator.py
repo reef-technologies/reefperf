@@ -15,8 +15,8 @@ class NodeNameGenerator(object):
 
 class CreateNodeParametersGenerator(object, metaclass=Singleton):
     VALUE = 'value'
-    GENERATOR = 'generator-class'
-    GEN_PARAMS = 'generator-parameters'
+    GENERATOR = 'generator_class'
+    GEN_PARAMS = 'generator_parameters'
     TYPE = 'type'
     NAME = 'name'
     COUNT = 'count'

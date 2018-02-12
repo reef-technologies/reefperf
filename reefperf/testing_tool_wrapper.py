@@ -54,8 +54,8 @@ class WrkWrapper(TestingToolWrapper):
 
     def get_resource_location(self, app):
         for resource_name in self.supported_resources:
-            if resource_name in app:
-                return app[resource_name]
+            if resource_name in app.resources:
+                return app.get_app_resource(resource_name)
         raise NotFoundSupportedResource()
 
     def run_tool(self, test_node, app):
@@ -63,4 +63,6 @@ class WrkWrapper(TestingToolWrapper):
         resource_location = self.get_resource_location(app)
         command = f'wrk --threads {self._threads} --connections {self._connections}\
             --duration {self._duration}s {resource_location}'
-        return test_node.connection.exec_command(command)
+        stream = test_node.connection.exec_command(command)
+        result = stream.readlines()
+        return result

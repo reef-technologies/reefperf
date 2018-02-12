@@ -46,7 +46,7 @@ class LCCloudScaleNode(CloudNode):
     This class is not threadsafe.
     """
 
-    def __init__(self, lc_node_obj, name, ssh_keys, deploy_command):
+    def __init__(self, lc_node_obj, name, ssh_keys, deploy_command=None):
         self._lc_node_obj = lc_node_obj
         self._possible_usernames = ['ubuntu', 'core', 'gentoo', 'centos', 'debian', 'arch', 'fedora']
         self._ssh_keys = ssh_keys

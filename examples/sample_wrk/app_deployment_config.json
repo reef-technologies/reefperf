@@ -2,7 +2,7 @@
     "app_deployment": {
         "nodes": {
             "http": {
-                "deploy_command": "./http_deploy.sh"
+                "deploy_command": "./examples/sample_wrk/http_deploy.sh"
             }
         }
     }

@@ -17,7 +17,7 @@ class DummyConnection(object):
 class TestCreateNodeParametersGenerator(object):
     def test_crate_node_parameters_generator(self):
         node_deploy_params = {
-            "deploy-command": "./client-name/cache/deploy.sh",
+            "deploy_command": "./client-name/cache/deploy.sh",
         }
         node_type_params = {
             "size": {
@@ -27,14 +27,14 @@ class TestCreateNodeParametersGenerator(object):
                 "value": "ubuntu-16.04",
             },
             "connection": {
-                "generator-class": "DummyConnection",
-                "generator-parameters": {
+                "generator_class": "DummyConnection",
+                "generator_parameters": {
                     "length": 2048,
                 },
             },
         }
         expected_params = {
-            "deploy-command": "./client-name/cache/deploy.sh",
+            "deploy_command": "./client-name/cache/deploy.sh",
             "size": "flex-2",
             "image": "ubuntu-16.04",
             "connection": {
