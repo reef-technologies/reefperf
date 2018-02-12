@@ -1,4 +1,3 @@
-import itertools
 from collections import defaultdict
 from frozendict import frozendict
 
@@ -62,8 +61,12 @@ class Theater(object):
             node.destroy()
 
     def deploy_app(self):
-        # TODO implement it
-        pass
+        app = Application()
+        for app_nodes in self._app_nodes.values():
+            for app_node in app_nodes:
+                node_resources = app_node.deploy()
+                app.add_node_resources(node_resources)
+        return app
 
     def __enter__(self):
         return self
@@ -72,3 +75,22 @@ class Theater(object):
         for app_nodes in self._app_nodes.values():
             for app_node in app_nodes:
                 app_node.destroy()
+
+
+class Application(object):
+    """
+    Represents all resources offered by deployed application.
+    Eg. http application url, database url, cache etc.
+    Sample application resources: {
+        "http": "http://localhost/app",
+        "database_url": "postgres://user:password@hostname:port/database-name",
+    }
+    """
+    def __init__(self):
+        self._resources = {}
+
+    def add_node_resources(self, node_resources):
+        self._resources.update(node_resources)
+
+    def get_app_resource(self, resource_name):
+        return self._resources[resource_name]

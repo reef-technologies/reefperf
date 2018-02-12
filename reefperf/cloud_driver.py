@@ -1,14 +1,15 @@
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 from functools import lru_cache
 
 import libcloud
 from class_registry import ClassRegistry
+from logfury.v0_1 import DefaultTraceAbstractMeta
 
 from reefperf.cloud_node import LCCloudScaleNode
 from reefperf.generators.ssh_key_generator import ParamikoRSAKeyGenerator
 
 
-class CloudDriver(object, metaclass=ABCMeta):
+class CloudDriver(object, metaclass=DefaultTraceAbstractMeta):
     @abstractmethod
     def create_node(self, *args):
         pass
@@ -41,7 +42,7 @@ class LCCloudScaleDriver(CloudDriver):
     def sizes(self):
         return {size.id: size for size in self._driver.list_sizes()}
 
-    def create_node(self, name, size, image):
+    def create_node(self, name, size, image, deploy_command):
         keys = ParamikoRSAKeyGenerator.generate(self.SSH_KEY_LENGTH)
         lc_node_obj = self._driver.create_node(
             name=name,
@@ -51,4 +52,4 @@ class LCCloudScaleDriver(CloudDriver):
         )
         #TODO some non-blocking solution for waiting when node is ready
         lc_node_obj.driver.wait_until_running((lc_node_obj,))
-        return LCCloudScaleNode(lc_node_obj, keys)
+        return LCCloudScaleNode(lc_node_obj, name, keys, deploy_command)

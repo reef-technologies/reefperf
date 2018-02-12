@@ -2,7 +2,7 @@ from class_registry import RegistryPatcher
 
 from reefperf.director import Actor
 from reefperf.testing_tool_wrapper import testing_tools
-from reefperf.tests.dummy_testing_tool_wrapper import  DummyTestingToolWrapper
+from reefperf.tests.dummy_testing_tool_wrapper import DummyTestingToolWrapper
 
 
 class TestActor(object):

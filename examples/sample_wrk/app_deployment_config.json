@@ -1,0 +1,9 @@
+{
+    "app_deployment": {
+        "nodes": {
+            "http": {
+                "deploy_command": "./http_deploy.sh"
+            }
+        }
+    }
+}

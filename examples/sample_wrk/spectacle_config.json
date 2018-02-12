@@ -1,0 +1,24 @@
+{
+    "acts": [
+        {
+            "scenes": [
+                {
+                    "node_type": "wrk",
+                    "actors": [
+                        {
+                            "role": [
+                                {
+                                    "testing_tool_class": "WrkWrapper",
+                                    "parameters": {
+                                        "n": 1000,
+                                        "c": 10
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
