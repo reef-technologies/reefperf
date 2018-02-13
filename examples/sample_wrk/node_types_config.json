@@ -3,7 +3,7 @@
         "http": {
             "driver_class": "LCCloudScaleDriver",
             "create_driver_parameters": {
-                "api_token": "yejubxvemmrxdpzk6d3avc4w6pqafxap"
+                "api_token": "token"
             },
             "create_node_parameters": {
                 "size": {
@@ -19,7 +19,7 @@
         "wrk": {
             "driver_class": "LCCloudScaleDriver",
             "create_driver_parameters": {
-                "api_token": "yejubxvemmrxdpzk6d3avc4w6pqafxap"
+                "api_token": "token"
             },
             "create_node_parameters": {
                 "size": {
