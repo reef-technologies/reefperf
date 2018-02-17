@@ -56,7 +56,7 @@ class WrkWrapper(TestingToolWrapper):
     def supported_resources(self):
         return 'https', 'http'
 
-    def get_resource_location(self, app):
+    def get_first_available_resource_location(self, app):
         for resource_name in self.supported_resources:
             if resource_name in app.resources:
                 return app.get_app_resource(resource_name)
@@ -64,7 +64,7 @@ class WrkWrapper(TestingToolWrapper):
 
     def run_tool(self, test_node, app):
         self.set_up(test_node)
-        resource_location = self.get_resource_location(app)
+        resource_location = self.get_first_available_resource_location(app)
         command = f'wrk --threads {self._threads} --connections {self._connections}\
             --duration {self._duration}s {resource_location}'
         stream = test_node.connection.exec_command(command)
