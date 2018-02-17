@@ -1,10 +1,13 @@
 import os
+import logging
 from abc import abstractmethod
 from io import StringIO
 from logfury.v0_1 import DefaultTraceAbstractMeta
 
 from paramiko import AutoAddPolicy, SSHClient
 from paramiko.rsakey import RSAKey
+
+logger = logging.getLogger(__name__)
 
 
 class NodeConnection(object, metaclass=DefaultTraceAbstractMeta):

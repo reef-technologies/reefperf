@@ -1,5 +1,7 @@
 import itertools
+import logging
 
+from logfury.v0_1 import DefaultTraceMeta
 from threading import Thread
 from queue import Queue
 
@@ -7,7 +9,10 @@ from reefperf.testing_tool_wrapper import testing_tools
 from reefperf.theater import Theater
 
 
-class Director(object):
+logger = logging.getLogger(__name__)
+
+
+class Director(object, metaclass=DefaultTraceMeta):
     def __init__(self, app_deployment_config, node_types_config, spectacle_config):
         self._app_deployment_config = app_deployment_config
         self._node_types_config = node_types_config

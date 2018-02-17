@@ -1,9 +1,12 @@
+import logging
 import subprocess
 from abc import abstractmethod
 from logfury.v0_1 import DefaultTraceAbstractMeta
 
 from reefperf.node_connection import ParamikoConnection
 from reefperf import utils
+
+logger = logging.getLogger(__name__)
 
 
 class CloudNode(object, metaclass=DefaultTraceAbstractMeta):
