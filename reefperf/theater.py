@@ -1,12 +1,19 @@
+import logging
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from frozendict import frozendict
+from logfury.v0_1 import DefaultTraceMeta
 
 from reefperf.driver_manager import DriverManager
 from reefperf.generators.parameters_generator import CreateNodeParametersGenerator
 
 
-class Theater(object):
+logger = logging.getLogger(__name__)
+
+
+class Theater(object, metaclass=DefaultTraceMeta):
     EMPTY_DICT = frozendict()
+    MAX_WORKERS = 10
 
     def __init__(self, node_types_config, app_deployment_config):
         self._node_types_config = node_types_config
@@ -52,9 +59,8 @@ class Theater(object):
         return driver.create_node(**ready_parameters)
 
     def create_test_nodes(self, node_types):
-        return [
-            self._create_test_node(node_type) for node_type in node_types
-        ]
+        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+            return list(executor.map(self._create_test_node, node_types))
 
     def destroy_test_nodes(self, test_nodes):
         for node in test_nodes:

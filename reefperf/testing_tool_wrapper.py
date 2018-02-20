@@ -1,11 +1,15 @@
 import time
+import logging
 
-from abc import ABCMeta, abstractmethod
+from logfury.v0_1 import DefaultTraceAbstractMeta
+from abc import abstractmethod
 
 from class_registry import ClassRegistry
 
+logger = logging.getLogger(__name__)
 
-class TestingToolWrapper(object, metaclass=ABCMeta):
+
+class TestingToolWrapper(object, metaclass=DefaultTraceAbstractMeta):
     @abstractmethod
     def run_tool(self, node, app):
         pass

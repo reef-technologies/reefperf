@@ -1,3 +1,4 @@
+import logging
 from abc import abstractmethod
 from functools import lru_cache
 
@@ -7,6 +8,9 @@ from logfury.v0_1 import DefaultTraceAbstractMeta
 
 from reefperf.cloud_node import LCCloudScaleNode
 from reefperf.generators.ssh_key_generator import ParamikoRSAKeyGenerator
+
+
+logger = logging.getLogger(__name__)
 
 
 class CloudDriver(object, metaclass=DefaultTraceAbstractMeta):
@@ -23,6 +27,9 @@ cloud_drivers = ClassRegistry()
 
 @cloud_drivers.register("LCCloudScaleDriver")
 class LCCloudScaleDriver(CloudDriver):
+    """
+    This class is not threadsafe.
+    """
     SSH_KEY_LENGTH = 4096
 
     def __init__(self, api_token):
@@ -50,6 +57,5 @@ class LCCloudScaleDriver(CloudDriver):
             image=self.images[image],
             ex_create_attr={'ssh_keys': [keys['pub_key_str']]}
         )
-        #TODO some non-blocking solution for waiting when node is ready
         lc_node_obj.driver.wait_until_running((lc_node_obj,))
         return LCCloudScaleNode(lc_node_obj, name, keys, deploy_command)
