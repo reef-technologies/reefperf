@@ -89,6 +89,10 @@ class Application(object):
     def __init__(self):
         self._resources = {}
 
+    @property
+    def resources(self):
+        return self._resources
+
     def add_node_resources(self, node_resources):
         self._resources.update(node_resources)
 

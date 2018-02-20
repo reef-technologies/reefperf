@@ -42,7 +42,7 @@ class LCCloudScaleDriver(CloudDriver):
     def sizes(self):
         return {size.id: size for size in self._driver.list_sizes()}
 
-    def create_node(self, name, size, image, deploy_command):
+    def create_node(self, name, size, image, deploy_command=None):
         keys = ParamikoRSAKeyGenerator.generate(self.SSH_KEY_LENGTH)
         lc_node_obj = self._driver.create_node(
             name=name,

@@ -1,38 +1,32 @@
 {
-    "app-node-types": {
+    "app_node_types": {
         "http": {
-            "driver-class": "LCCloudScaleDriver",
-            "create-driver-parameters": {
+            "driver_class": "LCCloudScaleDriver",
+            "create_driver_parameters": {
                 "api_token": "token"
             },
-            "create-node-parameters": {
+            "create_node_parameters": {
                 "size": {
                     "value": "flex-2"
                 },
                 "image": {
                     "value": "ubuntu-16.04"
-                },
-                "connection": {
-                    "generator-class": "ParamikoConnection"
                 }
             }
         }
     },
-    "test-node-types": {
+    "test_node_types": {
         "wrk": {
-            "driver-class": "LCCloudScaleDriver",
-            "create-driver-parameters": {
+            "driver_class": "LCCloudScaleDriver",
+            "create_driver_parameters": {
                 "api_token": "token"
             },
-            "create-node-parameters": {
+            "create_node_parameters": {
                 "size": {
                     "value": "flex-2"
                 },
                 "image": {
                     "value": "ubuntu-16.04"
-                },
-                "connection": {
-                    "generator-class": "ParamikoConnection"
                 }
             }
         }

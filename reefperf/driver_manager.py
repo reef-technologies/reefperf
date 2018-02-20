@@ -5,5 +5,5 @@ from reefperf.utils import Singleton
 
 class DriverManager(object, metaclass=Singleton):
     @lru_cache(maxsize=None)
-    def get_driver(self, cloud_name, *args):
-        return cloud_drivers.get(cloud_name, *args)
+    def get_driver(self, cloud_name, **kwargs):
+        return cloud_drivers.get(cloud_name, **kwargs)

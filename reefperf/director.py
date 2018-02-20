@@ -81,7 +81,7 @@ class Scene(object):
 
     def play(self):
         for actor_config in self._scene_config["actors"]:
-            yield from Actor(self._node, actor_config, self._app).play()
+            return Actor(self._node, actor_config, self._app).play()
 
 
 class Actor(object):

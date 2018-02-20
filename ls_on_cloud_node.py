@@ -1,6 +1,7 @@
 import logging
 import os
 from reefperf.cloud_driver import LCCloudScaleDriver
+from reefperf.testing_tool_wrapper import WrkWrapper
 
 if __name__ == '__main__':
     logging.basicConfig()
@@ -12,4 +13,9 @@ if __name__ == '__main__':
     with driver.create_node(name="lsnode", size="flex-2", image="ubuntu-16.04", deploy_command=deploy_command) as node:
         resources = node.deploy()
         print(resources)
-        input("Deployed app on node. Press enter for delete node")
+        with driver.create_node(name="wrknode", size="flex-2", image="ubuntu-16.04", deploy_command=None) as test_node:
+            app = resources
+            results = WrkWrapper(1, 1, 1).run_tool(test_node, app)
+            for line in results.readlines():
+                print(line)
+            input("Deployed app on node and made tests. Press enter for delete nodes")
